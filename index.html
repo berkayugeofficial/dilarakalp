@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalpli Aşk Sayfası</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fff0f5, #fce4ec);
+      font-family: 'Arial', sans-serif;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(45deg, #ff1744, #e91e63);
+      transform: rotate(-45deg);
+      animation: float 5s linear infinite;
+      box-shadow: 0 2px 8px rgba(255, 23, 68, 0.3);
+    }
+
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(45deg, #ff1744, #e91e63);
+      border-radius: 50%;
+    }
+
+    .heart:before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart:after {
+      left: 10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(-45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(-45deg);
+        opacity: 0;
+      }
+    }
+
+    .big-heart-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .big-heart-container:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .big-heart {
+      position: relative;
+      transform: rotate(-45deg);
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(45deg, #ff1744, #e91e63, #c2185b);
+      box-shadow:
+        0 10px 30px rgba(255, 23, 68, 0.4),
+        inset 0 2px 10px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+      transition: all 0.5s ease;
+    }
+
+    .big-heart:before,
+    .big-heart:after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(45deg, #ff1744, #e91e63, #c2185b);
+      border-radius: 50%;
+      box-shadow:
+        inset 0 2px 10px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.5s ease;
+    }
+
+    .big-heart:before {
+      top: -75px;
+      left: 0;
+    }
+
+    .big-heart:after {
+      left: 75px;
+      top: 0;
+    }
+
+    .heart-left, .heart-right {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(45deg, #ff1744, #e91e63, #c2185b);
+      transform: rotate(-45deg);
+      box-shadow:
+        0 10px 30px rgba(255, 23, 68, 0.4),
+        inset 0 2px 10px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+      transition: all 1s ease;
+      opacity: 0;
+    }
+
+    .heart-left:before, .heart-left:after,
+    .heart-right:before, .heart-right:after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(45deg, #ff1744, #e91e63, #c2185b);
+      border-radius: 50%;
+      box-shadow:
+        inset 0 2px 10px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .heart-left:before, .heart-right:before {
+      top: -75px;
+      left: 0;
+    }
+
+    .heart-left:after, .heart-right:after {
+      left: 75px;
+      top: 0;
+    }
+
+    .split-left {
+      opacity: 1;
+      transform: rotate(-45deg) translateX(-100px);
+    }
+
+    .split-right {
+      opacity: 1;
+      transform: rotate(-45deg) translateX(100px);
+    }
+
+    .letters {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: all 1s ease;
+      z-index: 10;
+    }
+
+    .letter {
+      display: inline-block;
+      font-size: 80px;
+      font-weight: bold;
+      color: #ff1744;
+      text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+      margin: 0 20px;
+      animation: bounce 0.5s ease;
+    }
+
+    .show-letters {
+      opacity: 1;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-30px);
+      }
+      60% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .powerpuff {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+    }
+
+    .powerpuff img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      border: 3px solid #ffd700;
+    }
+
+    .reset-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background: linear-gradient(45deg, #ff1744, #e91e63);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 3px 10px rgba(255, 23, 68, 0.3);
+      transition: all 0.3s ease;
+      display: none;
+    }
+
+    .reset-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 23, 68, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <button class="reset-btn" id="angerBtn" onclick="toggleAngryMode()">Berkay'a kızarsan Bas</button>
+
+  <div class="big-heart-container" id="heartContainer" onclick="splitHeart()">
+    <div class="big-heart" id="mainHeart"></div>
+    <div class="heart-left" id="heartLeft"></div>
+    <div class="heart-right" id="heartRight"></div>
+  </div>
+
+  <div class="letters" id="letters">
+    <span class="letter">D</span>
+    <span class="letter">&</span>
+    <span class="letter">B</span>
+  </div>
+
+  <div class="powerpuff" id="gif1" style="right: 20px; bottom: 20px;">
+    <img src="/14721.gif">
+  </div>
+
+  <div class="powerpuff" id="gif2" style="left: 20px; bottom: 20px;">
+    <img src="/bubbles-flying.gif">
+  </div>
+
+  <div class="powerpuff" id="angryGif" style="left: 50%; bottom: 20px; transform: translateX(-50%); display: none;">
+    <img src="/214137.gif">
+  </div>
+
+  <script>
+    let heartSplit = false;
+    let isAngry = false;
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    function splitHeart() {
+      if (heartSplit) return;
+
+      heartSplit = true;
+      document.getElementById('mainHeart').style.opacity = '0';
+      document.getElementById('heartLeft').classList.add('split-left');
+      document.getElementById('heartRight').classList.add('split-right');
+
+      setTimeout(() => {
+        document.getElementById('letters').classList.add('show-letters');
+        document.getElementById('angerBtn').style.display = 'block';
+      }, 800);
+    }
+
+    function toggleAngryMode() {
+      const mainHeart = document.getElementById('mainHeart');
+      const heartLeft = document.getElementById('heartLeft');
+      const heartRight = document.getElementById('heartRight');
+      const letters = document.getElementById('letters');
+      const gif1 = document.getElementById('gif1');
+      const gif2 = document.getElementById('gif2');
+      const angry = document.getElementById('angryGif');
+      const btn = document.getElementById('angerBtn');
+
+      if (!isAngry) {
+        heartSplit = false;
+        mainHeart.style.opacity = '1';
+        heartLeft.classList.remove('split-left');
+        heartRight.classList.remove('split-right');
+        letters.classList.remove('show-letters');
+        gif1.style.display = 'none';
+        gif2.style.display = 'none';
+        angry.style.display = 'block';
+        btn.textContent = "Berkay’ı affedersen Bas";
+      } else {
+        heartSplit = true;
+        mainHeart.style.opacity = '0';
+        heartLeft.classList.add('split-left');
+        heartRight.classList.add('split-right');
+        letters.classList.add('show-letters');
+        gif1.style.display = 'block';
+        gif2.style.display = 'block';
+        angry.style.display = 'none';
+        btn.textContent = "Berkay’a kızarsan Bas";
+      }
+
+      isAngry = !isAngry;
+    }
+
+    function resetHeart() {
+      heartSplit = false;
+      isAngry = false;
+      document.getElementById('mainHeart').style.opacity = '1';
+      document.getElementById('heartLeft').classList.remove('split-left');
+      document.getElementById('heartRight').classList.remove('split-right');
+      document.getElementById('letters').classList.remove('show-letters');
+      document.getElementById('angerBtn').style.display = 'none';
+      document.getElementById('gif1').style.display = 'block';
+      document.getElementById('gif2').style.display = 'block';
+      document.getElementById('angryGif').style.display = 'none';
+      document.getElementById('angerBtn').textContent = "Berkay’a kızarsan Bas";
+    }
+
+    setInterval(createHeart, 150);
+  </script>
+</body>
+</html>
